@@ -1,0 +1,226 @@
+{
+  "total": 20,
+  "passed": 6,
+  "failed": 14,
+  "bugs": [
+    {
+      "test_name": "REG-020 - Invalid Email Formats",
+      "description": "2 invalid emails were accepted!",
+      "details": {
+        "severity": "HIGH",
+        "accepted": [
+          "user1name@com",
+          "user1@domain.c"
+        ]
+      },
+      "timestamp": "2025-12-08T13:13:51.811342"
+    },
+    {
+      "test_name": "REG-021 - Excessive Email Length Boundary Test",
+      "description": "CRITICAL: Server crashed with 214-char email!",
+      "details": {
+        "severity": "CRITICAL",
+        "email_length": 214
+      },
+      "timestamp": "2025-12-08T13:13:53.631437"
+    },
+    {
+      "test_name": "REG-061 - Email Case Insensitive Duplicate Handling",
+      "description": "CRITICAL: Email case sensitivity bypass!",
+      "details": {
+        "severity": "CRITICAL"
+      },
+      "timestamp": "2025-12-08T13:14:10.149462"
+    },
+    {
+      "test_name": "REG-062 - Bypass Frontend Validation with JS Injection",
+      "description": "CRITICAL: Frontend validation bypassed AND backend accepted weak/invalid data!",
+      "details": {
+        "severity": "CRITICAL"
+      },
+      "timestamp": "2025-12-08T13:14:11.204043"
+    },
+    {
+      "test_name": "REG-067 - Concurrent registration with same email in two tabs",
+      "description": "Race condition error: 0 tabs succeeded (expected exactly 1)",
+      "details": {
+        "severity": "CRITICAL"
+      },
+      "timestamp": "2025-12-08T13:14:17.460401"
+    },
+    {
+      "test_name": "REG-030 - Password Length Boundaries (MIN=3, MAX=25)",
+      "description": "1/5 boundary tests failed!",
+      "details": {
+        "severity": "HIGH",
+        "failed_cases": [
+          {
+            "length": 26,
+            "password": "Ab1xxxxxxxxxxxxxxxxxxxxxxx",
+            "expected": "REJECT",
+            "actual": "ACCEPT",
+            "url": "http://localhost:8080/login.jsp?register=success",
+            "has_error_msg": false
+          }
+        ]
+      },
+      "timestamp": "2025-12-08T13:14:31.713145"
+    },
+    {
+      "test_name": "REG-014 - Password Field Illegal & Special Characters Handling",
+      "description": "CRITICAL: System crashed or vulnerable with password: b'Test123\\\\U0001f608\\\\U0001f525'",
+      "details": {
+        "severity": "CRITICAL",
+        "input": "Test123😈🔥"
+      },
+      "timestamp": "2025-12-08T13:14:37.796300"
+    },
+    {
+      "test_name": "REG-016 - Excessive Username Length Boundary Test",
+      "description": "CRITICAL: Server crashed with 200-char username!",
+      "details": {
+        "severity": "CRITICAL",
+        "length": 200
+      },
+      "timestamp": "2025-12-08T13:14:39.380504"
+    },
+    {
+      "test_name": "LGN-006 - Email With Leading/Trailing Spaces",
+      "description": "Inconsistent behavior: 3/4 spaced emails allowed",
+      "details": {
+        "note": "Partial trim → unpredictable UX, recommend full trim or full reject"
+      },
+      "timestamp": "2025-12-08T13:14:51.331862"
+    },
+    {
+      "test_name": "LGN-010 - Account Lockout After Consecutive Failed Logins",
+      "description": "CRITICAL: Account NOT locked after 5 failed attempts!",
+      "details": {
+        "severity": "CRITICAL"
+      },
+      "timestamp": "2025-12-08T13:15:06.374866"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "REG-020 - Invalid Email Formats",
+      "status": "FAIL",
+      "message": "2 invalid emails were accepted!",
+      "timestamp": "2025-12-08T13:13:51.811342"
+    },
+    {
+      "name": "REG-021 - Excessive Email Length Boundary Test",
+      "status": "FAIL",
+      "message": "CRITICAL: Server crashed with 214-char email!",
+      "timestamp": "2025-12-08T13:13:53.631437"
+    },
+    {
+      "name": "REG-022 - Valid Email Format Variants",
+      "status": "FAIL",
+      "message": "Exception: cannot access local variable 'page_source' where it is not associated with a value",
+      "timestamp": "2025-12-08T13:14:00.656449"
+    },
+    {
+      "name": "REG-060 - Email with Leading/Trailing Spaces",
+      "status": "PASS",
+      "message": "Email spaces consistently trimmed and accepted",
+      "timestamp": "2025-12-08T13:14:08.117944"
+    },
+    {
+      "name": "REG-061 - Email Case Insensitive Duplicate Handling",
+      "status": "FAIL",
+      "message": "CRITICAL: Email case sensitivity bypass!",
+      "timestamp": "2025-12-08T13:14:10.149462"
+    },
+    {
+      "name": "REG-062 - Bypass Frontend Validation with JS Injection",
+      "status": "FAIL",
+      "message": "CRITICAL: Frontend validation bypassed AND backend accepted weak/invalid data!",
+      "timestamp": "2025-12-08T13:14:11.204043"
+    },
+    {
+      "name": "REG-063 - Password Leading/Trailing Spaces Handling",
+      "status": "PASS",
+      "message": "Password spaces trimmed consistently (register & login)",
+      "timestamp": "2025-12-08T13:14:12.575170"
+    },
+    {
+      "name": "REG-064 - Form State Retention After Validation Error",
+      "status": "PASS",
+      "message": "Form state correctly retained after error",
+      "timestamp": "2025-12-08T13:14:13.696201"
+    },
+    {
+      "name": "REG-066 - Double-Click Register Button Protection",
+      "status": "PASS",
+      "message": "Double-click prevented → only one account created",
+      "timestamp": "2025-12-08T13:14:15.559714"
+    },
+    {
+      "name": "REG-067 - Concurrent registration with same email in two tabs",
+      "status": "FAIL",
+      "message": "Race condition error: 0 tabs succeeded (expected exactly 1)",
+      "timestamp": "2025-12-08T13:14:17.460401"
+    },
+    {
+      "name": "REG-068 - Concurrent registration of different accounts in parallel tabs",
+      "status": "FAIL",
+      "message": "Concurrent registration of different accounts failed - at least one did not succeed",
+      "timestamp": "2025-12-08T13:14:22.477428"
+    },
+    {
+      "name": "REG-030 - Password Length Boundaries (MIN=3, MAX=25)",
+      "status": "FAIL",
+      "message": "1/5 boundary tests failed!",
+      "timestamp": "2025-12-08T13:14:31.713145"
+    },
+    {
+      "name": "REG-014 - Password Field Illegal & Special Characters Handling",
+      "status": "FAIL",
+      "message": "CRITICAL: System crashed or vulnerable with password: b'Test123\\\\U0001f608\\\\U0001f525'",
+      "timestamp": "2025-12-08T13:14:37.796300"
+    },
+    {
+      "name": "REG-016 - Excessive Username Length Boundary Test",
+      "status": "FAIL",
+      "message": "CRITICAL: Server crashed with 200-char username!",
+      "timestamp": "2025-12-08T13:14:39.380504"
+    },
+    {
+      "name": "LGN-002 - Missing Email (Submit Empty Email)",
+      "status": "PASS",
+      "message": "Empty email correctly blocked with validation message",
+      "timestamp": "2025-12-08T13:14:49.172976"
+    },
+    {
+      "name": "LGN-006 - Email With Leading/Trailing Spaces",
+      "status": "WARN",
+      "message": "Inconsistent behavior: 3/4 spaced emails allowed",
+      "timestamp": "2025-12-08T13:14:51.331862"
+    },
+    {
+      "name": "LGN-010 - Account Lockout After Consecutive Failed Logins",
+      "status": "FAIL",
+      "message": "CRITICAL: Account NOT locked after 5 failed attempts!",
+      "timestamp": "2025-12-08T13:15:06.374866"
+    },
+    {
+      "name": "LGN-011 - Common/Default Admin Passwords & Weak Credential Rejection",
+      "status": "FAIL",
+      "message": "Too many weak credentials allowed (4/7)",
+      "timestamp": "2025-12-08T13:15:46.454533"
+    },
+    {
+      "name": "LGN-016 - Concurrent Login with Same User (Session Handling)",
+      "status": "ERROR",
+      "message": "Test execution failed due to environment",
+      "timestamp": "2025-12-08T13:15:50.518453"
+    },
+    {
+      "name": "LGN-017 - Account Lockout Scope (Per Account, Not Per IP)",
+      "status": "PASS",
+      "message": "Lockout is correctly per-account: User B unaffected by User A's failed attempts",
+      "timestamp": "2025-12-08T13:16:01.265004"
+    }
+  ]
+}
